@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  front:
+    build: .
+    container_name: majan
+    ports: 
+      - 3000:3000
+    tty: true
+    volumes:
+      - ./:/src
+    working_dir: "/src"
+    command: yarn start
