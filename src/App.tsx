@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
+import axios from "axios";
+
 function App(): JSX.Element {
+  const [message, setMessage] = useState<string>("");
+  const url: string = process.env.REACT_APP_DEV_API_URL ?? "";
+  useEffect(() => {
+    axios.get(url).then((res) => {
+      setMessage(res.data);
+    });
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
+          {message}
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
         <a
