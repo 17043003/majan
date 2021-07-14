@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 import "./App.css";
 import { endPoint } from "./Config";
-import LoginForm from './components/LoginForm'
+import Login from "./pages/Login";
 
 function App(): JSX.Element {
   const [message, setMessage] = useState<string>("");
@@ -17,8 +17,12 @@ function App(): JSX.Element {
 
   return (
     <>
-    <div className="App">{message}</div>
-    <LoginForm />
+      <div className="App">{message}</div>
+      <BrowserRouter>
+        <Route path="/login">
+          <Login />
+        </Route>
+      </BrowserRouter>
     </>
   );
 }
