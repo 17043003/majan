@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { endPoint } from "../Config";
 
-type UserInfoType = "isLoggedIn" | "jwt"
+type UserInfoType = "isLoggedIn" | "jwt";
 
 class User {
   set = (key: UserInfoType, value: string) => localStorage.setItem(key, value);
