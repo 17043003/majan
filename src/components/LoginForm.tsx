@@ -1,18 +1,13 @@
 import { useState } from "react";
-import axios from "axios";
 
-import { endPoint } from "../Config";
+import user from '../state/User'
 
 const LoginForm = (): JSX.Element => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const onClick = async () => {
-    const res = await axios.post(`${endPoint}auth`, {
-      email: email,
-      password: password,
-    });
-    console.log(res.data.jwt);
+    user.login(email, password)
   };
 
   return (
