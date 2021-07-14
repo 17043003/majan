@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 
 import "./App.css";
 import { endPoint } from "./Config";
+import LoginForm from './components/LoginForm'
 
 function App(): JSX.Element {
   const [message, setMessage] = useState<string>("");
@@ -14,7 +15,12 @@ function App(): JSX.Element {
     });
   }, []);
 
-  return <div className="App">{message}</div>;
+  return (
+    <>
+    <div className="App">{message}</div>
+    <LoginForm />
+    </>
+  );
 }
 
 export default App;
