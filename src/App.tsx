@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect, Link } from "react-router-dom";
 
 import "./App.css";
 import { endPoint } from "./Config";
 import Login from "./pages/Login";
-import LogoutButton from "./components/LogoutButton"
+import UserProfile from "./pages/UserProfile";
+import LogoutButton from "./components/LogoutButton";
 
 import user from "./state/User";
 
@@ -24,11 +25,12 @@ function App(): JSX.Element {
 
       <BrowserRouter>
         <>{user.isLoggedIn() ? <LogoutButton /> : <Redirect to="/login" />}</>
+        <Link to="/user">user</Link>
         <Switch>
-          <Route path="/login">
+          <Route exact path="/login">
             <Login />
           </Route>
-          <Route path="/user" >
+          <Route exact path="/user">
             <UserProfile />
           </Route>
         </Switch>
