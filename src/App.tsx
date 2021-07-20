@@ -6,6 +6,8 @@ import "./App.css";
 import { endPoint } from "./Config";
 import Login from "./pages/Login";
 import UserProfile from "./pages/UserProfile";
+import Quiz from "./pages/Quiz";
+
 import LogoutButton from "./components/LogoutButton";
 
 import user from "./state/User";
@@ -32,6 +34,9 @@ function App(): JSX.Element {
           </Route>
           <Route exact path="/user">
             <UserProfile />
+          </Route>
+          <Route exact path="/quiz">
+            <Quiz />
           </Route>
         </Switch>
       </BrowserRouter>
