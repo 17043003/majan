@@ -1,6 +1,7 @@
-import api from "../state/Api";
+import { Link, useRouteMatch } from "react-router-dom";
 
-import images from "../images";
+import api from "../../state/Api";
+import images from "../../images";
 
 const Quiz = (): JSX.Element => {
   const onClickHandler = (index: number) => {
@@ -18,9 +19,11 @@ const Quiz = (): JSX.Element => {
     );
   });
 
+  const { url } = useRouteMatch();
   return (
     <>
-      quiz shown
+      <Link to={`${url}/new`}>何切る作成</Link>
+      <h1>一覧</h1>
       {elements}
     </>
   );

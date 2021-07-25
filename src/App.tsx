@@ -6,7 +6,9 @@ import "./App.css";
 import { endPoint } from "./Config";
 import Login from "./pages/Login";
 import UserProfile from "./pages/UserProfile";
-import Quiz from "./pages/Quiz";
+
+import Quiz from "./pages/quiz/Index";
+import NewQuiz from "./pages/quiz/New";
 
 import LogoutButton from "./components/LogoutButton";
 
@@ -14,6 +16,19 @@ import user from "./state/User";
 
 function App(): JSX.Element {
   const [message, setMessage] = useState<string>("");
+
+  const AuthRouter = () => [
+    <Route exact path="/login" component={Login} key={0} />,
+  ];
+
+  const UserRouter = () => [
+    <Route exact path="/user" component={UserProfile} key={0} />,
+  ];
+
+  const QuizRouter = () => [
+    <Route exact path="/quiz" component={Quiz} key={0} />,
+    <Route exact path="/quiz/new" component={NewQuiz} key={1} />,
+  ];
 
   useEffect(() => {
     axios.get(endPoint).then((res) => {
@@ -26,18 +41,21 @@ function App(): JSX.Element {
       <div className="App">{message}</div>
 
       <BrowserRouter>
-        <>{user.isLoggedIn() ? <LogoutButton /> : <Redirect to="/login" />}</>
-        <Link to="/user">user</Link>
+        <ul>
+          <li>
+            {user.isLoggedIn() ? <LogoutButton /> : <Redirect to="/login" />}
+          </li>
+          <li>
+            <Link to="/user">user</Link>
+          </li>
+          <li>
+            <Link to="/quiz">何切る一覧</Link>
+          </li>
+        </ul>
         <Switch>
-          <Route exact path="/login">
-            <Login />
-          </Route>
-          <Route exact path="/user">
-            <UserProfile />
-          </Route>
-          <Route exact path="/quiz">
-            <Quiz />
-          </Route>
+          {AuthRouter()}
+          {UserRouter()}
+          {QuizRouter()}
         </Switch>
       </BrowserRouter>
     </>
