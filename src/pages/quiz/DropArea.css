@@ -1,0 +1,13 @@
+.drop-area {
+  display: inline-block;
+  width: 120px;
+  height: 60px;
+  background-color: beige;
+  border: solid;
+  margin: 3px;
+}
+
+.hand {
+  display: block;
+  width: auto;
+}
