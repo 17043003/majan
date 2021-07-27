@@ -224,6 +224,7 @@ const NewQuiz = (): JSX.Element => {
           </div>
         </div>
         <button onClick={() => submitQuizInfo()}>作成</button>
+        <button onClick={() => setHand([])}>リセット</button>
       </form>
     </>
   );
