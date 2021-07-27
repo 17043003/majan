@@ -24,8 +24,15 @@ class Api {
     });
     return res.data;
   };
-  postRequest = async (url: string, data: { [key: string]: string }) => {
-    const res = await axios.post(url, data, { headers: this.headers });
+  postRequest = async (
+    url: string,
+    data: { [key: string]: string | number }
+  ) => {
+    const res = await axios.post(url, data, {
+      headers: {
+        Authorization: `bearer ${user.get("jwt")}`,
+      },
+    });
     return res.data;
   };
 }
