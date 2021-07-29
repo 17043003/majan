@@ -1,22 +1,23 @@
 import { Link, useRouteMatch } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import api from "../../state/Api";
-import images from "../../images";
+import { endPoint } from "../../Config";
+
+import QuizItem, { ListItemPropType } from "./QuizItem";
 
 const Quiz = (): JSX.Element => {
-  const onClickHandler = (index: number) => {
-    console.log(index);
-  };
+  const [listItem, setListItem] = useState<ListItemPropType[]>([]);
 
-  const elements = images.map((image, count) => {
-    return (
-      <img
-        key={count}
-        src={image}
-        alt={image}
-        onClick={() => onClickHandler(count)}
-      />
-    );
+  // ページ表示時、一覧を取得
+  useEffect(() => {
+    api.getRequest(`${endPoint}quiz`).then((res) => {
+      setListItem([...res]);
+    });
+  }, []);
+
+  const Items: JSX.Element[] = listItem.map((value, index) => {
+    return <QuizItem {...value} key={index} />;
   });
 
   const { url } = useRouteMatch();
@@ -24,7 +25,7 @@ const Quiz = (): JSX.Element => {
     <>
       <Link to={`${url}/new`}>何切る作成</Link>
       <h1>一覧</h1>
-      {elements}
+      {Items}
     </>
   );
 };
