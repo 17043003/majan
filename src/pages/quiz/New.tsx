@@ -3,6 +3,7 @@ import { useState } from "react";
 import api from "../../state/Api";
 import { endPoint } from "../../Config";
 import images from "../../images";
+import { rounds, winds } from "./QuizItem";
 
 import "./DropArea.css";
 
@@ -19,19 +20,6 @@ const NewQuiz = (): JSX.Element => {
   const [description, setDescription] = useState(""); // 問題詳細
 
   const [dragging, setDragging] = useState(0);
-
-  const rounds = [
-    "東1局",
-    "東2局",
-    "東3局",
-    "東4局",
-    "南1局",
-    "南2局",
-    "南3局",
-    "南4局",
-  ];
-
-  const winds = ["東", "南", "西", "北"];
 
   const roundOptions = rounds.map((value, index) => (
     <option key={index} value={index}>
