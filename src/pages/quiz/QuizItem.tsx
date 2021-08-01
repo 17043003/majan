@@ -2,10 +2,15 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import { Link } from "react-router-dom";
 
 import images from "../../images";
 
+import HandImage, { HandImagePropType } from "../../components/HandImage";
+
 export interface ListItemPropType {
+  id: number;
   title: string;
   content: string;
   drawn: string;
@@ -57,36 +62,35 @@ const ListItem = (props: ListItemPropType): JSX.Element => {
   const dora = (
     <img src={images[parseInt(props.dora, 10)]} alt="dora" width={paiWidth} />
   );
-  const hands = props?.content?.split(",");
-  const handImages = hands?.map((value, index) => {
-    return (
-      <img
-        src={images[parseInt(value, 10)]}
-        alt="pai-image"
-        width={paiWidth}
-        key={index}
-      />
-    );
-  });
+
+  const handImageProps: HandImagePropType = {
+    content: props?.content,
+    imageWidth: "30px",
+  };
 
   const classes = useStyles();
 
   return (
     <Card>
-      <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          {props.title}
-        </Typography>
-        {handImages} ツモ：{drawn} ドラ：{dora} <br />
-        <Typography component="p">
-          {rounds[props.round]} {props.around}巡目 {props.point}点
-          {winds[props.wind]}家
-        </Typography>
-      </CardContent>
+      <CardActionArea>
+        <Link to={`/quiz/${props.id}`}>
+          <CardContent>
+            <Typography
+              className={classes.title}
+              color="textSecondary"
+              gutterBottom
+            >
+              {props.title}
+            </Typography>
+            <HandImage {...handImageProps} />
+            ツモ：{drawn} ドラ：{dora} <br />
+            <Typography component="p">
+              {rounds[props.round]} {props.around}巡目 {props.point}点
+              {winds[props.wind]}家
+            </Typography>
+          </CardContent>
+        </Link>
+      </CardActionArea>
     </Card>
   );
 };

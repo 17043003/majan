@@ -9,6 +9,7 @@ import UserProfile from "./pages/UserProfile";
 
 import Quiz from "./pages/quiz/Index";
 import NewQuiz from "./pages/quiz/New";
+import ShowQuiz from "./pages/quiz/Show";
 
 import LogoutButton from "./components/LogoutButton";
 
@@ -28,6 +29,7 @@ function App(): JSX.Element {
   const QuizRouter = () => [
     <Route exact path="/quiz" component={Quiz} key={0} />,
     <Route exact path="/quiz/new" component={NewQuiz} key={1} />,
+    <Route exact path="/quiz/:id" component={ShowQuiz} key={2} />,
   ];
 
   useEffect(() => {
